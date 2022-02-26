@@ -1,6 +1,16 @@
 image: docker:stable
 stages:
+  - build
   - test
+
+build:
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - echo "starting docker build......."
+    - ls
+    - docker build -t cicd-test .
 
 test:
   stage: test

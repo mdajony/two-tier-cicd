@@ -1,0 +1,11 @@
+image: docker:stable
+stages:
+  - test
+
+test:
+  stage: test
+  services:
+    - docker:dind
+  image: ictu/sshpass
+  script:
+    - sshpass -p hello123 ssh -o StrictHostKeyChecking=no cicduser@139.59.106.149 "touch cicdtest.txt"

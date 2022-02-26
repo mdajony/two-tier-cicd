@@ -10,7 +10,11 @@ build:
   script:
     - echo "starting docker build......."
     - ls
+    - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
     - docker build -t cicd-test .
+    - docker images
+    - docker tag cicd-test shahedmehbub/cicd-test
+    - docker push shahedmehbub/cicd-test
 
 test:
   stage: test

@@ -39,8 +39,9 @@ deploy:
     - aws eks update-kubeconfig --region us-west-2 --name ts4u-new-cluster
   script:
     - kubectl get nodes
+    - cd deployments
+    - kubectl apply -f deployment.yaml
     
-
 build:
   stage: build
   when: manual

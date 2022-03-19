@@ -4,6 +4,8 @@ stages:
   - deploy
   - build
   - test
+variables:
+  DOCKER_HOST: tcp://localhost:2375
 
 # aws:
 #   stage: aws

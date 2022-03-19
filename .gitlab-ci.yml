@@ -1,7 +1,7 @@
 image: docker:stable
 stages:
-  - deploy
   - aws
+  - deploy
   - build
   - test
 
@@ -18,7 +18,7 @@ stages:
 
 aws:
   stage: aws
-  when: manual
+  # when: manual
   image: bentolor/docker-dind-awscli
   services:
     - docker:dind

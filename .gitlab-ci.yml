@@ -11,7 +11,7 @@ aws:
     entrypoint: [""]
   script:
     - aws s3 ls
-    - $(aws ecr get-login --no-include-email --region us-west-2)
+    - aws ecr get-login --no-include-email --region us-west-2
 
 build:
   stage: build

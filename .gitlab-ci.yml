@@ -4,13 +4,24 @@ stages:
   - build
   - test
 
+# aws:
+#   stage: aws
+#   image:
+#     name: amazon/aws-cli
+#     entrypoint: [""]
+#   services:
+#     - docker:dind
+#   script:
+#     - aws s3 ls
+#     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
+
 aws:
   stage: aws
-  image:
-    name: amazon/aws-cli
-    entrypoint: [""]
+  image: bentolor/docker-dind-awscli
   services:
     - docker:dind
+  before_script:
+    - docker info
   script:
     - aws s3 ls
     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com

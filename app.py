@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello world from CI/CD k8s from gitlab-ci....'
+    return 'Hello world from CI/CD k8s from gitlab-ci with runner....'
 
 
 @app.route('/reverser',methods = ['POST'])

@@ -18,6 +18,8 @@ stages:
 
 aws:
   stage: aws
+  tags:
+    - only-backend
   # when: manual
   image: bentolor/docker-dind-awscli
   services:
@@ -33,6 +35,8 @@ aws:
 
 deploy:
   stage: deploy
+  tags:
+    - only-backend
   image: bearengineer/awscli-kubectl
   before_script:
     - aws s3 ls

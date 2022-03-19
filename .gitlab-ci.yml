@@ -1,5 +1,6 @@
 image: docker:stable
 stages:
+  - deploy
   - aws
   - build
   - test
@@ -17,6 +18,7 @@ stages:
 
 aws:
   stage: aws
+  when: manual
   image: bentolor/docker-dind-awscli
   services:
     - docker:dind
@@ -28,6 +30,15 @@ aws:
     - docker build -t backend .
     - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:latest
     - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:latest
+
+deploy:
+  stage: deploy
+  image: bearengineer/awscli-kubectl
+  before_script:
+    - aws s3 ls
+    - aws eks update-kubeconfig --region us-west-2 --name ts4u-new-cluster
+  script:
+    - kubectl get nodes
     
 
 build:

@@ -9,9 +9,11 @@ aws:
   image:
     name: amazon/aws-cli
     entrypoint: [""]
+  services:
+    - docker:dind
   script:
     - aws s3 ls
-    - aws ecr get-login --no-include-email --region us-west-2
+    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
 
 build:
   stage: build

@@ -6,7 +6,9 @@ stages:
 
 aws:
   stage: aws
-  image: amazon/aws-cli
+  image:
+    name: amazon/aws-cli
+    entrypoint: [""]
   script:
     - aws s3 ls
     - $(aws ecr get-login --no-include-email --region us-west-2)

@@ -28,8 +28,8 @@ aws:
     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
   script:
     - docker build -t backend .
-    - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:latest
-    - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:latest
+    - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
+    - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
 
 deploy:
   stage: deploy
@@ -40,6 +40,7 @@ deploy:
   script:
     - kubectl get nodes
     - cd deployments
+    - sed -i 's/<VERSION>/'${CI_COMMIT_SHORT_SHA}'/g' deployment.yaml
     - kubectl apply -f deployment.yaml
     
 build:

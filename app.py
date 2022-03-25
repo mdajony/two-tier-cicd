@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello world from CI/CD k8s from jenkins with runner....'
+    return 'Hello world from CI/CD in docker from jenkins with webhook....'
 
 
 @app.route('/reverser',methods = ['POST'])

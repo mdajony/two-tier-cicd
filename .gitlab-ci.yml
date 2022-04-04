@@ -31,7 +31,7 @@ aws:
   #   - aws s3 ls
   #   - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
   script:
-    - exit 1
+    - exit 0
     # - docker build -t backend .
     # - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
     # - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}

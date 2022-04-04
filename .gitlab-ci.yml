@@ -26,14 +26,15 @@ aws:
   image: bentolor/docker-dind-awscli
   services:
     - docker:dind
-  before_script:
-    - docker info
-    - aws s3 ls
-    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
+  # before_script:
+  #   - docker info
+  #   - aws s3 ls
+  #   - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 745137160548.dkr.ecr.us-west-2.amazonaws.com
   script:
-    - docker build -t backend .
-    - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
-    - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
+    - exit 1
+    # - docker build -t backend .
+    # - docker tag backend:latest 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
+    # - docker push 745137160548.dkr.ecr.us-west-2.amazonaws.com/backend:${CI_COMMIT_SHORT_SHA}
 
 deploy:
   stage: deploy
